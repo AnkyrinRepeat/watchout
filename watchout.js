@@ -1,11 +1,3 @@
-// start slingin' some d3 here.
-
-
-//select all .enemy
-  //set position to page.width/height * math.random
-  //ease the animation
-  //repeat in one second
-
 var box = d3.select('body')
               .append('svg')
               .attr('class', 'box')
@@ -19,7 +11,6 @@ var createEnemy = d3.select('.box').selectAll('.enemy').data([1,2,3,4,5,6]).ente
 var moveEnemy = function() { return d3.select('.box').selectAll('.enemy').selectAll('circle').transition().attr(
   {
     'cy': function(){
-      debugger;
     return d3.select('.box').node().getBoundingClientRect().height * Math.random();
   }, 'cx': function(){
     return d3.select('.box').node().getBoundingClientRect().width * Math.random();
@@ -44,5 +35,31 @@ var createPlayer = d3.select('.box')
 
 d3.select('.player').call(dragon);
 
+//implement score
+var collision = function() {
+  setTimeout(function(){
+  var checkXCollision = function(enemyX, playerX) {
+    if (Math.abs(enemyX-playerX) < playerR)) {
+      collide()
+    }
+  }
+
+  d3.select('.enemy').data([1,2,3,4,5,6]).enter().checkXCollision(this.cx, playerX)
+    // var playerX = d3.selectAll('.player').selectAll('circle').attr("cx", function(d) { return d; })
+    // var playerY = d3.selectAll('.player').selectAll('circle').attr("cy", function(d) { debugger; return d; })
+    // var enemies = d3.selectAll('.enemy').selectAll('circle')
+    // debugger;
+    // for (var i = 0; enemies.length; i++ ){
+    //  var enemyX = enemies[i].attr("cx", function(d) { return d.x; })
+    //  var enemyY = enemies[i].attr("cy", function(d) { return d.y; })
+    // }
+  },100)
+}
+//if player.x+r = enemy.x || player.x-r = enemy.x
+
+//if player.y+r = enemy.y || player.y-r = enemy.y
+  //worlds collide
+  //reset score
+collision();
 moveEnemy();
 movingEnemies()
