@@ -4,3 +4,6 @@ html {
 body {
     height: 80%;
 }
+.enemy {
+    background: url(shuriken.png);
+}
